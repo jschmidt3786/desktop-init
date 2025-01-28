@@ -5,7 +5,30 @@
 printf "Install basic tools? "
 read -r Q
 if [ "$Q" = y ] ; then
-        pkg install -y security/openssh-askpass textproc/bat sysutils/ccze textproc/colordiff security/doas sysutils/exa sysutils/freecolor sysutils/fusefs-exfat sysutils/fusefs-sshfs devel/git-extras devel/git-lfs devel/gitflow net/gitup sysutils/htop net-mgmt/iftop net-mgmt/ipcalc japanese/w3m textproc/jq security/keychain misc/mc mail/mutt sysutils/ncdu ftp/ncftp3 security/nmap lang/python lang/python3 sysutils/tmate sysutils/tmux sysutils/tree editors/vim net/wireguard-tools sysutils/zfstools shells/zsh
+	pkg install -n security/openssh-askpass security/doas security/keychain
+	printf "Authentication/Authorization additions. install? "
+	read -r Q
+	if [ "$Q" = y ] ; then
+		pkg install -y security/openssh-askpass security/doas security/keychain
+	fi
+	pkg install -n textproc/bat sysutils/ccze textproc/colordiff sysutils/exa sysutils/freecolor sysutils/htop w3m_fix_cat textproc/jq misc/mc mail/mutt sysutils/ncdu ftp/ncftp3 sysutils/tree shells/zsh
+	printf "mail, shell, text, web extras? "
+	read -r Q
+	if [ "$Q" = y ] ; then
+		pkg install -y textproc/bat sysutils/ccze textproc/colordiff sysutils/exa sysutils/freecolor sysutils/htop w3m_fix_cat textproc/jq misc/mc mail/mutt sysutils/ncdu ftp/ncftp3 sysutils/tree shells/zsh
+	fi
+        pkg install -n net/gitup
+	printf "gitup for ports/src/docs? "
+	read -r Q
+	if [ "$Q" = y ] ; then
+        pkg install -y net/gitup
+	fi
+        pkg install -n sysutils/fusefs-exfat sysutils/fusefs-sshfs devel/git-extras devel/git-lfs devel/gitflow net-mgmt/iftop net-mgmt/ipcalc security/nmap lang/python lang/python3 sysutils/tmate sysutils/tmux editors/vim net/wireguard-tools sysutils/zfstools
+	printf "filesystem, git, and mgmt tools? "
+	read -r Q
+	if [ "$Q" = y ] ; then
+        pkg install -y sysutils/fusefs-exfat sysutils/fusefs-sshfs devel/git-extras devel/git-lfs devel/gitflow net-mgmt/iftop net-mgmt/ipcalc security/nmap lang/python lang/python3 sysutils/tmate sysutils/tmux editors/vim net/wireguard-tools sysutils/zfstools
+	fi
 else
         exit 0
 fi
